@@ -1,0 +1,19 @@
+import { get, post } from "./api";
+
+export interface LeaderboardEntry {
+  level: "beginner" | "intermediate" | "hard" | "expert";
+  name: string;
+  score: number;
+}
+
+export const getLeaderboard = async (): Promise<
+  Record<LeaderboardEntry["level"], LeaderboardEntry[]>
+> => {
+  return get("/leaderboard");
+};
+
+export const addToLeaderboard = async (
+  entry: LeaderboardEntry
+): Promise<{ success: boolean }> => {
+  return post("/leaderboard", entry);
+};

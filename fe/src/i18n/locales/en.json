@@ -1,0 +1,31 @@
+{
+  "game": {
+    "title": "Sudoku.com",
+    "difficulty": "Difficulty:",
+    "difficulties": {
+      "beginner": "Beginner",
+      "intermediate": "Medium",
+      "hard": "Hard",
+      "expert": "Expert"
+    },
+    "save": "Save",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "exitGame": "Are you sure you want to exit the game?",
+    "newGame": "New Game",
+    "time": "Time",
+    "leaderboard": "Leaderboard",
+    "congratulations": "Congratulations!",
+    "yourScore": "Your score :",
+    "enterName": "Enter your name",
+    "noScores": "No scores available",
+    "player": "Player Name",
+    "score": "Score",
+    "error": {
+      "fetchingScores": "Error fetching scores",
+      "savingScore": "An error occurred while saving your score."
+    },
+    "on": "on",
+    "off": "off"
+  }
+}

@@ -1,0 +1,11 @@
+# Node modules (frontend & backend)
+fe/node_modules/
+be/node_modules/
+
+# Build files
+fe/dist/
+be/dist/
+
+# Env files
+fe/.env
+be/.env
