@@ -32,7 +32,7 @@ This Sudoku game was developed according to the following key requirements:
 ## 👜 Project Structure
 
 ```
-sudoku-game/
+sudoku/
 ├── fe/              # Vue 3 + TypeScript
 │   ├── components/
 │   ├── layouts/
@@ -59,7 +59,7 @@ sudoku-game/
 
 ```bash
 git clone https://github.com/mervekara/sudoku.git
-cd sudoku-game
+cd sudoku
 docker-compose up --build
 ```
 
