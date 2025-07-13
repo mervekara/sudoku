@@ -65,9 +65,14 @@ const difficulties = computed(() => {
   ];
 });
 
-function onDifficultyChange(newDiff: Difficulty) {
-  if (newDiff !== prevDifficulty.value) {
-    openModal(newDiff);
+function onDifficultyChange(newDiff: unknown) {
+  if (
+    typeof newDiff === "string" &&
+    ["beginner", "intermediate", "hard", "expert"].includes(newDiff)
+  ) {
+    if (newDiff !== prevDifficulty.value) {
+      openModal(newDiff as Difficulty);
+    }
   }
 }
 </script>

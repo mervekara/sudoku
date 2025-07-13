@@ -1,14 +1,15 @@
 import { SudokuState } from "@/src/stores/sudoku/types/shared";
 import { CellPosition, HintActions } from "@/src/stores/sudoku/types/types";
+import { SudokuCell } from "@/src/types/type";
 
 export const useHintActions = (state: SudokuState): HintActions => {
   const getEmptyCells = (): CellPosition[] => {
-    return state.grid.value.flatMap((row, rowIndex) =>
-      row.flatMap((cell, colIndex) => {
+    return state.grid.value.flatMap((row: SudokuCell[], rowIndex: number) =>
+      row.flatMap((cell: SudokuCell, colIndex: number) => {
         return !cell.isInitial && cell.value === null
           ? [{ row: rowIndex, col: colIndex }]
           : [];
-      }),
+      })
     );
   };
 

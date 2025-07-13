@@ -5,7 +5,7 @@ import { generateSudoku } from "@/src/utils/sudokuGenerator";
 import { GameActions } from "@/src/stores/sudoku/types/types";
 
 export const useGameActions = (state: SudokuState): GameActions => {
-  const resetGameState = (grid: SudokuGrid, solution: SudokuGrid): void => {
+  const resetGameState = (grid: SudokuGrid, solution: number[][]): void => {
     state.grid.value = grid;
     state.solution.value = solution;
     state.score.value = 0;
@@ -21,7 +21,7 @@ export const useGameActions = (state: SudokuState): GameActions => {
     grid.forEach((row) =>
       row.forEach((cell) => {
         cell.drafts = [];
-      }),
+      })
     );
   };
 

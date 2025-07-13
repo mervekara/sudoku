@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  backend:
+    build: ./be
+    container_name: sudoku-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/sudoku
+    depends_on:
+      - mongo
+    volumes:
+      - ./be:/app
+    restart: always
+
+  frontend:
+    build: ./fe
+    container_name: sudoku-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: always
+
+  mongo:
+    image: mongo:6
+    container_name: sudoku-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    command: ["mongod", "--quiet"]
+    restart: always
+
+volumes:
+  mongo-data:

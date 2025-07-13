@@ -1,1 +1,1 @@
-export type SudokuState = ReturnType<typeof import("./state").useSudokuState>;
+export type SudokuState = ReturnType<typeof import("../state").useSudokuState>;
