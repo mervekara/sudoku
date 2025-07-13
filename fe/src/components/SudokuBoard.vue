@@ -59,7 +59,7 @@ const { handleCanvasClick, handleTouchStart } = useSudokuCanvas(
   grid,
   selectedCell,
   handleCellSelect,
-  isFocused
+  isFocused,
 );
 
 function onKeyDown(e: KeyboardEvent) {

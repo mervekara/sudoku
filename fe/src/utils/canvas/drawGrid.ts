@@ -17,7 +17,7 @@ export function drawGrid(
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
   grid: SudokuCell[][],
-  selectedCell: SelectedCell | null
+  selectedCell: SelectedCell | null,
 ): void {
   const size: number = Math.min(MAX_CANVAS_SIZE, window.innerWidth - 40);
   const cellSize: number = size / 9;

@@ -4,7 +4,7 @@ const SIZE = 9 as const;
 const BOX = 3 as const;
 const VALID_NUMBERS = Array.from(
   { length: SIZE },
-  (_, i) => i + 1
+  (_, i) => i + 1,
 ) as ReadonlyArray<number>;
 const MAX_ATTEMPTS = 100;
 
@@ -23,7 +23,7 @@ function createEmptyCell(): SudokuCell {
 
 export function createEmptyGrid(): SudokuGrid {
   return Array.from({ length: SIZE }, () =>
-    Array.from({ length: SIZE }, createEmptyCell)
+    Array.from({ length: SIZE }, createEmptyCell),
   );
 }
 
@@ -51,7 +51,7 @@ export function generateSudoku(visibleCount: number): {
 
 export function isGridComplete(grid: SudokuGrid): boolean {
   return grid.every((row) =>
-    row.every((cell) => cell.value !== null && !cell.isError)
+    row.every((cell) => cell.value !== null && !cell.isError),
   );
 }
 
@@ -84,7 +84,7 @@ function isValidPlacement(
   board: Board,
   row: number,
   col: number,
-  num: number
+  num: number,
 ): boolean {
   for (let i = 0; i < SIZE; i++) {
     if (board[row][i] === num || board[i][col] === num) return false;
@@ -114,7 +114,7 @@ function shuffle<T>(array: T[]): T[] {
 function revealRandomCells(
   grid: SudokuGrid,
   solution: Board,
-  count: number
+  count: number,
 ): void {
   const indices = shuffle(Array.from({ length: SIZE * SIZE }, (_, i) => i));
   let revealed = 0;
@@ -132,7 +132,7 @@ function revealRandomCells(
 
 function extractVisibleCells(grid: SudokuGrid, solution: Board): Board {
   return grid.map((row, i) =>
-    row.map((cell, j) => (cell.isInitial ? solution[i][j] : 0))
+    row.map((cell, j) => (cell.isInitial ? solution[i][j] : 0)),
   );
 }
 

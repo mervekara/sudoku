@@ -8,7 +8,7 @@ export const useHintActions = (state: SudokuState): HintActions => {
         return !cell.isInitial && cell.value === null
           ? [{ row: rowIndex, col: colIndex }]
           : [];
-      })
+      }),
     );
   };
 

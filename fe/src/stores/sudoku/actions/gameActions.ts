@@ -21,7 +21,7 @@ export const useGameActions = (state: SudokuState): GameActions => {
     grid.forEach((row) =>
       row.forEach((cell) => {
         cell.drafts = [];
-      })
+      }),
     );
   };
 

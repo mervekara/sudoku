@@ -36,7 +36,7 @@ describe("useGameActions", () => {
             isHint: false,
             wasCorrectOnce: false,
             drafts: [],
-          }))
+          })),
       );
 
     mockSolution = Array(9)

@@ -8,7 +8,7 @@ export function useSudokuCanvas(
   grid: Ref<any[][]>,
   selectedCell: Ref<{ row: number; col: number } | null>,
   onCellSelect: (row: number, col: number) => void,
-  isFocused: Ref<boolean>
+  isFocused: Ref<boolean>,
 ) {
   const context = ref<CanvasRenderingContext2D | null>(null);
 

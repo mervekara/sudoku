@@ -14,7 +14,7 @@ const createMockCell = (
   value: number | null = null,
   isInitial: boolean = false,
   isHint: boolean = false,
-  wasCorrectOnce: boolean = false
+  wasCorrectOnce: boolean = false,
 ) => ({
   value,
   isInitial,
@@ -30,7 +30,7 @@ const createMockGrid = (fillValue: number | null = null): SudokuGrid => {
     .map((_, row) =>
       Array(9)
         .fill(null)
-        .map((_, col) => createMockCell(fillValue))
+        .map((_, col) => createMockCell(fillValue)),
     );
 };
 

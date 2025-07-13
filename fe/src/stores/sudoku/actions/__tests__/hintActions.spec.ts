@@ -8,7 +8,7 @@ const createMockCell = (
   value: number | null = null,
   isInitial: boolean = false,
   isHint: boolean = false,
-  wasCorrectOnce: boolean = false
+  wasCorrectOnce: boolean = false,
 ) => ({
   value,
   isInitial,
@@ -22,7 +22,7 @@ const createMockState = (overrides: Partial<SudokuState> = {}): SudokuState => {
     .map(() =>
       Array(9)
         .fill(null)
-        .map(() => createMockCell())
+        .map(() => createMockCell()),
     );
 
   defaultGrid[0][0] = createMockCell(1, true);
@@ -34,7 +34,7 @@ const createMockState = (overrides: Partial<SudokuState> = {}): SudokuState => {
     .map((_, row) =>
       Array(9)
         .fill(null)
-        .map((_, col) => row * 9 + col + 1)
+        .map((_, col) => row * 9 + col + 1),
     );
 
   return {
@@ -143,7 +143,7 @@ describe("useHintActions", () => {
 
       expect(hintedCell).toBeTruthy();
       expect(hintedCell.value).toBe(
-        state.solution.value[hintedPosition?.row][hintedPosition?.col]
+        state.solution.value[hintedPosition?.row][hintedPosition?.col],
       );
       expect(hintedCell.isHint).toBe(true);
       expect(hintedCell.wasCorrectOnce).toBe(true);
@@ -233,7 +233,7 @@ describe("useHintActions", () => {
       }
 
       expect(hintedCell.value).toBe(
-        state.solution.value[hintedPosition?.row][hintedPosition?.col]
+        state.solution.value[hintedPosition?.row][hintedPosition?.col],
       );
       expect(hintedCell.isHint).toBe(true);
       expect(hintedCell.wasCorrectOnce).toBe(true);

@@ -3,7 +3,7 @@ import { SudokuState } from "@/src/stores/sudoku/types/shared";
 
 export const useCellActions = (
   state: SudokuState,
-  saveToHistory: () => void
+  saveToHistory: () => void,
 ): {
   inputCell: (row: number, col: number, value: number) => void;
   clearCell: (row: number, col: number) => void;

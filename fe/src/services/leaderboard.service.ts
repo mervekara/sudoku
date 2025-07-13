@@ -13,7 +13,7 @@ export const getLeaderboard = async (): Promise<
 };
 
 export const addToLeaderboard = async (
-  entry: LeaderboardEntry
+  entry: LeaderboardEntry,
 ): Promise<{ success: boolean }> => {
   return post("/leaderboard", entry);
 };

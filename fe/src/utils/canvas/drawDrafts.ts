@@ -9,7 +9,7 @@ export function drawDrafts(
   drafts: number[],
   x: number,
   y: number,
-  cellSize: number
+  cellSize: number,
 ): void {
   ctx.font = `${cellSize * 0.18}px Arial`;
   ctx.fillStyle = SUDOKU_COLORS.draftText;

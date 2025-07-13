@@ -38,7 +38,7 @@ const usedDigits = computed(() => {
   grid.value.forEach((row) =>
     row.forEach((cell) => {
       if (cell.value) map[cell.value]++;
-    })
+    }),
   );
   return map.map((count) => count === 9);
 });

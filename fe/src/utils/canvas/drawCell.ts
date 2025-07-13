@@ -13,7 +13,7 @@ export function drawCell(
   col: number,
   cellSize: number,
   grid: SudokuCell[][],
-  selected: SelectedCell | null
+  selected: SelectedCell | null,
 ): void {
   const cell = grid[row][col];
   const x = col * cellSize;

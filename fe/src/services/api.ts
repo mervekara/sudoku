@@ -26,7 +26,7 @@ function handleApiError(error: unknown): never {
 
 export const get = async <T>(
   url: string,
-  config?: AxiosRequestConfig
+  config?: AxiosRequestConfig,
 ): Promise<T> => {
   try {
     const response = await axiosInstance.get<T>(url, config);
@@ -39,7 +39,7 @@ export const get = async <T>(
 export const post = async <T>(
   url: string,
   data?: unknown,
-  config?: AxiosRequestConfig
+  config?: AxiosRequestConfig,
 ): Promise<T> => {
   try {
     const response = await axiosInstance.post<T>(url, data, config);
@@ -52,7 +52,7 @@ export const post = async <T>(
 export const put = async <T>(
   url: string,
   data?: unknown,
-  config?: AxiosRequestConfig
+  config?: AxiosRequestConfig,
 ): Promise<T> => {
   try {
     const response = await axiosInstance.put<T>(url, data, config);
@@ -64,7 +64,7 @@ export const put = async <T>(
 
 export const del = async <T>(
   url: string,
-  config?: AxiosRequestConfig
+  config?: AxiosRequestConfig,
 ): Promise<T> => {
   try {
     const response = await axiosInstance.delete<T>(url, config);

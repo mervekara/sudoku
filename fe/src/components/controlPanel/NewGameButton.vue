@@ -5,7 +5,15 @@
       :label="label"
       :icon="icon"
       :color="color"
-      :variant="(variant as 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | undefined) || 'flat'"
+      :variant="
+        (variant as
+          | 'flat'
+          | 'text'
+          | 'elevated'
+          | 'tonal'
+          | 'outlined'
+          | undefined) || 'flat'
+      "
       :iconOnly="iconOnly"
       :btnClass="btnClass"
       :onClick="onNewGameClick"
