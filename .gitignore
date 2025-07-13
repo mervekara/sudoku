@@ -9,3 +9,5 @@ be/dist/
 # Env files
 fe/.env
 be/.env
+
+fe/.vscode
