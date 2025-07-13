@@ -40,11 +40,11 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-import { useExitGameModal } from "../composables/useExitGameModal";
-import { Difficulty } from "../types/type";
-import ExitGameModal from "./modals/ExitGameModal.vue";
 import { computed } from "vue";
+import { useI18n } from "vue-i18n";
+import { useExitGameModal } from "@/src/composables/useExitGameModal";
+import { Difficulty } from "@/src/types/type";
+import ExitGameModal from "@/src/components/modals/ExitGameModal.vue";
 
 const { t } = useI18n();
 const {

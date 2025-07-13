@@ -29,9 +29,9 @@
 <script setup lang="ts">
 import { ref, computed, defineEmits } from "vue";
 import { useWindowFocus } from "@vueuse/core";
-import { useSudokuStore } from "../stores/sudoku";
-import { useSudokuCanvas } from "../composables/useSudokuCanvas";
-import { isGridComplete } from "../utils/sudokuGenerator";
+import { useSudokuStore } from "@/src/stores/sudoku";
+import { useSudokuCanvas } from "@/src/composables/useSudokuCanvas";
+import { isGridComplete } from "@/src/utils/sudokuGenerator";
 
 const emit = defineEmits(["show-modal"]);
 

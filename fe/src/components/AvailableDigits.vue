@@ -18,8 +18,8 @@
 <script setup lang="ts">
 import { computed, defineEmits } from "vue";
 import { useDisplay } from "vuetify";
-import { useSudokuStore } from "../stores/sudoku";
-import { isGridComplete } from "../utils/sudokuGenerator";
+import { useSudokuStore } from "@/src/stores/sudoku";
+import { isGridComplete } from "@/src/utils/sudokuGenerator";
 
 const store = useSudokuStore();
 const { lgAndUp } = useDisplay();

@@ -1,12 +1,17 @@
-import { SudokuState } from "../types/shared";
+import { SudokuState } from "@/src/stores/sudoku/types/shared";
+import { TimerActions } from "@/src/stores/sudoku/types/types";
 
-export const useTimerActions = (state: SudokuState) => {
+export const useTimerActions = (state: SudokuState): TimerActions => {
   let timerInterval: ReturnType<typeof setInterval> | null = null;
 
   const startTimer = (): void => {
-    if (state.timerActive.value || state.isPaused.value) return;
+    const isAlreadyRunning = state.timerActive.value;
+    const isPaused = state.isPaused.value;
+
+    if (isAlreadyRunning || isPaused) return;
 
     state.timerActive.value = true;
+
     timerInterval = setInterval(() => {
       state.timer.value++;
     }, 1000);
@@ -15,7 +20,7 @@ export const useTimerActions = (state: SudokuState) => {
   const stopTimer = (): void => {
     state.timerActive.value = false;
 
-    if (timerInterval) {
+    if (timerInterval !== null) {
       clearInterval(timerInterval);
       timerInterval = null;
     }
@@ -40,5 +45,5 @@ export const useTimerActions = (state: SudokuState) => {
     stopTimer,
     pauseTimer,
     resumeTimer,
-  };
+  } as const;
 };

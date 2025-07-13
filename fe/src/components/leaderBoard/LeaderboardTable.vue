@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Difficulty } from "../types/type";
+import { Difficulty } from "@/src/types/type";
 import { defineProps } from "vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();

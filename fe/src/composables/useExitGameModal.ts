@@ -1,6 +1,6 @@
 import { ref } from "vue";
-import { useSudokuStore } from "../stores/sudoku";
-import { Difficulty } from "../types/type";
+import { useSudokuStore } from "@/src/stores/sudoku";
+import { Difficulty } from "@/src/types/type";
 
 export function useExitGameModal() {
   const sudokuStore = useSudokuStore();

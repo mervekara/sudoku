@@ -1,21 +1,24 @@
-import { SudokuState } from "../types/shared";
+import { SudokuState } from "@/src/stores/sudoku/types/shared";
+import { CellPosition, HintActions } from "@/src/stores/sudoku/types/types";
 
-export const useHintActions = (state: SudokuState) => {
-  const getEmptyCells = () => {
-    return state.grid.value.flatMap((row, i) =>
-      row.flatMap((cell, j) =>
-        !cell.isInitial && cell.value === null ? [{ row: i, col: j }] : []
-      )
+export const useHintActions = (state: SudokuState): HintActions => {
+  const getEmptyCells = (): CellPosition[] => {
+    return state.grid.value.flatMap((row, rowIndex) =>
+      row.flatMap((cell, colIndex) => {
+        return !cell.isInitial && cell.value === null
+          ? [{ row: rowIndex, col: colIndex }]
+          : [];
+      })
     );
   };
 
   const useHint = (): void => {
     if (state.hintsLeft.value <= 0) return;
 
-    const emptyCells = getEmptyCells();
+    const emptyCells: CellPosition[] = getEmptyCells();
     if (emptyCells.length === 0) return;
 
-    const randomIndex = Math.floor(Math.random() * emptyCells.length);
+    const randomIndex: number = Math.floor(Math.random() * emptyCells.length);
     const { row, col } = emptyCells[randomIndex];
     const cell = state.grid.value[row][col];
 
@@ -30,5 +33,5 @@ export const useHintActions = (state: SudokuState) => {
 
   return {
     useHint,
-  };
+  } as const;
 };

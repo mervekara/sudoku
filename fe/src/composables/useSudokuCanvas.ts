@@ -1,7 +1,7 @@
 import { ref, onMounted, watch, nextTick } from "vue";
-import { debounce } from "lodash-es";
 import type { Ref } from "vue";
-import { drawGrid } from "../utils/canvas/drawGrid";
+import { debounce } from "lodash-es";
+import { drawGrid } from "@/src/utils/canvas/drawGrid";
 
 export function useSudokuCanvas(
   canvasRef: Ref<HTMLCanvasElement | null>,

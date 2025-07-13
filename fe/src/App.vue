@@ -4,7 +4,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import SudokuView from "./views/SudokuView.vue";
+import SudokuView from "@/src/views/SudokuView.vue";
 </script>
 <style>
 body {

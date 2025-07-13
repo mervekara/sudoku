@@ -1,10 +1,12 @@
 import { SudokuGrid } from "@/src/types/type";
-import { deepClone } from "../utils";
-import { SudokuState } from "../types/shared";
+import { deepClone } from "@/src/stores/sudoku/utils";
+import { SudokuState } from "@/src/stores/sudoku/types/shared";
+import { HistoryActions } from "@/src/stores/sudoku/types/types";
 
-export const useHistoryActions = (state: SudokuState) => {
+export const useHistoryActions = (state: SudokuState): HistoryActions => {
   const saveToHistory = (): void => {
-    state.history.value.push(deepClone(state.grid.value));
+    const clonedGrid: SudokuGrid = deepClone(state.grid.value);
+    state.history.value.push(clonedGrid);
   };
 
   const restoreWasCorrectOnce = (targetGrid: SudokuGrid): void => {
@@ -19,8 +21,11 @@ export const useHistoryActions = (state: SudokuState) => {
   const undo = (): void => {
     if (state.history.value.length === 0) return;
 
-    state.future.value.push(deepClone(state.grid.value));
-    const previousState = state.history.value.pop()!;
+    const currentGrid: SudokuGrid = deepClone(state.grid.value);
+    state.future.value.push(currentGrid);
+
+    const previousState: SudokuGrid | undefined = state.history.value.pop();
+    if (!previousState) return;
 
     restoreWasCorrectOnce(previousState);
     state.grid.value = previousState;
@@ -29,8 +34,11 @@ export const useHistoryActions = (state: SudokuState) => {
   const redo = (): void => {
     if (state.future.value.length === 0) return;
 
-    state.history.value.push(deepClone(state.grid.value));
-    const nextState = state.future.value.pop()!;
+    const currentGrid: SudokuGrid = deepClone(state.grid.value);
+    state.history.value.push(currentGrid);
+
+    const nextState: SudokuGrid | undefined = state.future.value.pop();
+    if (!nextState) return;
 
     restoreWasCorrectOnce(nextState);
     state.grid.value = nextState;
@@ -40,5 +48,5 @@ export const useHistoryActions = (state: SudokuState) => {
     saveToHistory,
     undo,
     redo,
-  };
+  } as const;
 };

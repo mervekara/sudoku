@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col gap-6 w-full">
     <div class="flex items-center justify-between w-full">
-      <div class="w-1/3"></div>
+      <div class="w-full sm:w-1/3"></div>
 
       <div
-        class="w-1/3 text-center text-2xl md:text-4xl font-semibold"
+        class="w-full sm:w-1/3 text-center text-2xl md:text-4xl font-semibold"
         :class="{
           'text-green-500': score > 0,
           'text-red-500': score < 0,
@@ -14,7 +14,7 @@
         {{ score }}
       </div>
 
-      <div class="w-1/3 flex justify-end items-center gap-2">
+      <div class="w-full sm:w-1/3 flex justify-end items-center gap-2">
         <div class="text-sm font-digital text-[#517bb3]">{{ time }}</div>
 
         <ControlButton
@@ -45,14 +45,17 @@
 
 <script setup lang="ts">
 import { computed, watch, defineEmits } from "vue";
-import { useSudokuStore } from "../stores/sudoku";
 import { useWindowFocus } from "@vueuse/core";
-import { isGridComplete } from "../utils/sudokuGenerator";
-import ControlPanel from "./ControlPanel.vue";
-import ControlButton from "./ControlButton.vue";
+import ControlPanel from "@/src/components/controlPanel/ControlPanel.vue";
+import ControlButton from "@/src/components/controlPanel/ControlButton.vue";
+import { isGridComplete } from "@/src/utils/sudokuGenerator";
+import { useSudokuStore } from "@/src/stores/sudoku";
 
 const sudokuStore = useSudokuStore();
 const isFocused = useWindowFocus();
+
+// Focus handling
+// Resume timer when focused, pause when not focused
 watch(isFocused, (focused) => {
   if (focused && sudokuStore.pauseReason === "focus") {
     sudokuStore.resumeTimer();

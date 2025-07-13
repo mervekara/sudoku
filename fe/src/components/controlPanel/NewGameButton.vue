@@ -25,10 +25,10 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-import ControlButton from "./ControlButton.vue";
-import ExitGameModal from "./modals/ExitGameModal.vue";
-import { useExitGameModal } from "../composables/useExitGameModal";
-import { useSudokuStore } from "../stores/sudoku";
+import ControlButton from "@/src/components/controlPanel/ControlButton.vue";
+import ExitGameModal from "@/src/components/modals/ExitGameModal.vue";
+import { useExitGameModal } from "@/src/composables/useExitGameModal";
+import { useSudokuStore } from "@/src/stores/sudoku";
 
 defineProps<{
   label?: string;

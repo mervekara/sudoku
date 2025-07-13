@@ -1,10 +1,10 @@
 import { Difficulty } from "@/src/types/type";
-import { useCellActions } from "./actions/cellActions";
-import { useGameActions } from "./actions/gameActions";
-import { useHintActions } from "./actions/hintActions";
-import { useHistoryActions } from "./actions/historyActions";
-import { useTimerActions } from "./actions/timerActions";
-import { SudokuState } from "./types/shared";
+import { useGameActions } from "@/src/stores/sudoku/actions/gameActions";
+import { useHintActions } from "@/src/stores/sudoku//actions/hintActions";
+import { useHistoryActions } from "@/src/stores/sudoku/actions/historyActions";
+import { useTimerActions } from "@/src/stores/sudoku/actions/timerActions";
+import { useCellActions } from "@/src/stores/sudoku/actions/cellActions";
+import { SudokuState } from "@/src/stores/sudoku/types/shared";
 
 export const useSudokuActions = (state: SudokuState) => {
   const historyActions = useHistoryActions(state);

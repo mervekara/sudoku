@@ -1,8 +1,8 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import App from "./App.vue";
+import App from "@/src/App.vue";
 import { VueQueryPlugin } from "@tanstack/vue-query";
-import i18n from "./i18n";
+import i18n from "@/src/i18n";
 
 import "./style.css";
 

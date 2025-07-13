@@ -1,4 +1,4 @@
-import { get, post } from "./api";
+import { get, post } from "@/src/services/api";
 
 export interface LeaderboardEntry {
   level: "beginner" | "intermediate" | "hard" | "expert";

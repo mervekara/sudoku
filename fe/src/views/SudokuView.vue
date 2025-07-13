@@ -32,6 +32,9 @@
     <template #leader-board>
       <LeaderBoard />
     </template>
+    <template #footer>
+      <AppFooter />
+    </template>
   </SudokuGameLayout>
 
   <Teleport to="body">
@@ -45,17 +48,18 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { useSudokuStore } from "../stores/sudoku";
+import { useSudokuStore } from "@/src/stores/sudoku";
 
-import SudokuGameLayout from "../layouts/SudokuLayout.vue";
-import AppHeader from "../components/AppHeader.vue";
-import DifficultyTabs from "../components/DifficultyTabs.vue";
-import SudokuBoard from "../components/SudokuBoard.vue";
-import HeaderPanel from "../components/HeaderPanel.vue";
-import AvailableDigits from "../components/AvailableDigits.vue";
-import NewGameButton from "../components/NewGameButton.vue";
-import LeaderBoard from "../components/LeaderBoard.vue";
-import EndGameModal from "../components/modals/EndGameModal.vue";
+import SudokuGameLayout from "@/src/layouts/SudokuLayout.vue";
+import AppHeader from "@/src/components/app/AppHeader.vue";
+import AppFooter from "@/src/components/app/AppFooter.vue";
+import DifficultyTabs from "@/src/components/DifficultyTabs.vue";
+import SudokuBoard from "@/src/components/SudokuBoard.vue";
+import HeaderPanel from "@/src/components/controlPanel/HeaderPanel.vue";
+import AvailableDigits from "@/src/components/AvailableDigits.vue";
+import NewGameButton from "@/src/components/controlPanel/NewGameButton.vue";
+import LeaderBoard from "@/src/components/leaderBoard/LeaderBoard.vue";
+import EndGameModal from "@/src/components/modals/EndGameModal.vue";
 import { useI18n } from "vue-i18n";
 
 const sudokuStore = useSudokuStore();

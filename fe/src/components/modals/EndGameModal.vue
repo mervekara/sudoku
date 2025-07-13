@@ -13,7 +13,10 @@
           }}</span>
         </div>
 
+        <AppLoader v-if="isLoading" />
+
         <v-text-field
+          v-else
           v-model="name"
           :label="t('game.enterName')"
           :placeholder="t('game.enterName')"
@@ -22,12 +25,10 @@
           base-color="#7091d5"
           color="#7091d5"
           bg-color="white"
-          maxlength="12"
+          maxlength="50"
           class="w-full max-w-sm"
         />
-
-        <AppLoader v-if="isLoading" />
-        <AppError v-else-if="errorMessage" :message="errorMessage" />
+        <AppError v-if="errorMessage" :message="errorMessage" />
       </div>
     </template>
 
@@ -38,7 +39,7 @@
           variant="tonal"
           color="#7091d5"
           @click="save"
-          :disabled="!name.trim()"
+          :disabled="name.trim().length < 3 || isLoading"
         >
           {{ t("game.save") }}
         </v-btn>
@@ -49,14 +50,14 @@
 
 <script setup lang="ts">
 import { ref, computed, toRefs, defineProps, defineEmits } from "vue";
-import AppModal from "./AppModal.vue";
-import AppLoader from "../AppLoader.vue";
-import AppError from "../AppError.vue";
+import AppModal from "@/src/components/modals/AppModal.vue";
+import AppLoader from "@/src/components/app/AppLoader.vue";
+import AppError from "@/src/components/app/AppError.vue";
 
-import { useSudokuStore } from "../../stores/sudoku";
-import { addToLeaderboard } from "../../services/leaderboard.service";
 import { useQueryClient } from "@tanstack/vue-query";
 import { useI18n } from "vue-i18n";
+import { useSudokuStore } from "@/src/stores/sudoku";
+import { addToLeaderboard } from "@/src/services/leaderboard.service";
 const { t } = useI18n();
 
 const store = useSudokuStore();

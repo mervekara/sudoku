@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-3 sm:gap-4 md:gap-4 lg:gap-5 w-full">
+  <div class="flex gap-3 sm:gap-4 md:gap-4 lg:gap-5 w-full justify-center">
     <!-- Undo -->
     <ControlButton
       size="large"
@@ -7,7 +7,7 @@
       icon="mdi-undo"
       color="#517bb3"
       :iconOnly="true"
-      :disabled="!canUndo"
+      :disabled="!canUndo || isGamePaused"
       :on-click="onUndo"
     />
 
@@ -18,7 +18,7 @@
       icon="mdi-redo"
       color="#517bb3"
       :iconOnly="true"
-      :disabled="!canRedo"
+      :disabled="!canRedo || isGamePaused"
       @click="onRedo"
     />
 
@@ -30,7 +30,7 @@
       color="#517bb3"
       :iconOnly="true"
       @click="onClearCell"
-      :disabled="!canClear"
+      :disabled="!canClear || isGamePaused"
     />
 
     <!-- Edit Mode Toggle -->
@@ -42,9 +42,11 @@
       :iconOnly="true"
       :badge-content="isEditMode ? t('game.on') : t('game.off')"
       :badge-color="isEditMode ? '#517bb3' : '#a5bfee'"
+      :disabled="isGamePaused"
       @click="toggleEditMode"
     />
 
+    <!-- Hint Button -->
     <ControlButton
       size="large"
       variant="tonal"
@@ -53,17 +55,19 @@
       badge-color="#517bb3"
       :badge-content="hintCount"
       :iconOnly="true"
-      :disabled="hintCount <= 0"
+      :disabled="hintCount <= 0 || isGamePaused"
       @click="onHint"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import ControlButton from "./ControlButton.vue";
+import ControlButton from "@/src/components/controlPanel/ControlButton.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
-import { defineProps } from "vue";
+import { computed, defineProps } from "vue";
+import { useSudokuStore } from "@/src/stores/sudoku";
+const sudokuStore = useSudokuStore();
 
 defineProps<{
   canUndo: boolean;
@@ -77,4 +81,8 @@ defineProps<{
   onHint: () => void;
   onClearCell: () => void;
 }>();
+
+const isGamePaused = computed(() => {
+  return sudokuStore.pauseReason === "manual";
+});
 </script>

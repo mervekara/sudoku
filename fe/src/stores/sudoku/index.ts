@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import { useSudokuState } from "./state";
-import { useSudokuActions } from "./useSudokuActions";
+import { useSudokuState } from "@/src/stores/sudoku/state";
+import { useSudokuActions } from "@/src/stores/sudoku/useSudokuActions";
 
 export const useSudokuStore = defineStore("sudoku", () => {
   const state = useSudokuState();

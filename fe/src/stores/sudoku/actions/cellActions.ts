@@ -1,10 +1,14 @@
 import { SudokuCell } from "@/src/types/type";
-import { SudokuState } from "../types/shared";
+import { SudokuState } from "@/src/stores/sudoku/types/shared";
 
 export const useCellActions = (
   state: SudokuState,
   saveToHistory: () => void
-) => {
+): {
+  inputCell: (row: number, col: number, value: number) => void;
+  clearCell: (row: number, col: number) => void;
+  addOrRemoveDraft: (row: number, col: number, value: number) => void;
+} => {
   const updateScore = (cell: SudokuCell, isCorrect: boolean): void => {
     if (isCorrect) {
       if (!cell.wasCorrectOnce) {
@@ -22,7 +26,7 @@ export const useCellActions = (
 
     saveToHistory();
 
-    const isCorrect = state.solution.value[row][col] === value;
+    const isCorrect: boolean = state.solution.value[row][col] === value;
 
     cell.value = value;
     cell.drafts = [];
@@ -47,11 +51,11 @@ export const useCellActions = (
     const cell = state.grid.value[row][col];
     if (cell.isInitial || cell.value !== null) return;
 
-    const draftIndex = cell.drafts.indexOf(value);
+    const draftIndex: number = cell.drafts.indexOf(value);
 
     if (draftIndex === -1) {
       cell.drafts.push(value);
-      cell.drafts.sort();
+      cell.drafts.sort((a, b) => a - b);
     } else {
       cell.drafts.splice(draftIndex, 1);
     }
@@ -61,5 +65,5 @@ export const useCellActions = (
     inputCell,
     clearCell,
     addOrRemoveDraft,
-  };
+  } as const;
 };

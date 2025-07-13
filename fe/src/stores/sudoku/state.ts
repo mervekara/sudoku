@@ -1,5 +1,5 @@
 import { Difficulty, SudokuGrid } from "@/src/types/type";
-import { createEmptyGrid } from "../../utils/sudokuGenerator";
+import { createEmptyGrid } from "@/src/utils/sudokuGenerator";
 import { ref } from "vue";
 
 export const useSudokuState = () => ({

@@ -1,7 +1,12 @@
-import type { SudokuGrid, SudokuCell } from "../types/type";
+import type { SudokuGrid, SudokuCell } from "@/src/types/type";
 
-const SIZE = 9;
-const BOX = 3;
+const SIZE = 9 as const;
+const BOX = 3 as const;
+const VALID_NUMBERS = Array.from(
+  { length: SIZE },
+  (_, i) => i + 1
+) as ReadonlyArray<number>;
+const MAX_ATTEMPTS = 100;
 
 type Board = number[][];
 
@@ -29,25 +34,18 @@ export function generateSudoku(visibleCount: number): {
   let solution: Board = [];
   let puzzle: SudokuGrid = [];
 
-  const MAX_ATTEMPTS = 100;
-  let attempts = 0;
-
-  while (attempts < MAX_ATTEMPTS) {
-    attempts++;
+  for (let attempts = 0; attempts < MAX_ATTEMPTS; attempts++) {
     solution = generateSolvedBoard();
     puzzle = createEmptyGrid();
     revealRandomCells(puzzle, solution, visibleCount);
 
-    const temp = extractVisibleCells(puzzle, solution);
-    const unique = countSolutions(temp);
-
-    if (unique === 1) break;
+    const visibleBoard = extractVisibleCells(puzzle, solution);
+    if (countSolutions(visibleBoard) === 1) {
+      return { grid: puzzle, solution };
+    }
   }
 
-  if (attempts === MAX_ATTEMPTS) {
-    console.warn("Could not generate a unique puzzle after many attempts.");
-  }
-
+  console.warn("Could not generate a unique puzzle after many attempts.");
   return { grid: puzzle, solution };
 }
 
@@ -65,9 +63,9 @@ function generateSolvedBoard(): Board {
 
     const row = Math.floor(index / SIZE);
     const col = index % SIZE;
-    const nums = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    const shuffled = shuffle([...VALID_NUMBERS]);
 
-    for (const num of nums) {
+    for (const num of shuffled) {
       if (isValidPlacement(board, row, col, num)) {
         board[row][col] = num;
         if (fill(index + 1)) return true;
@@ -105,12 +103,12 @@ function isValidPlacement(
 }
 
 function shuffle<T>(array: T[]): T[] {
-  const copy = [...array];
-  for (let i = copy.length - 1; i > 0; i--) {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
+    [result[i], result[j]] = [result[j], result[i]];
   }
-  return copy;
+  return result;
 }
 
 function revealRandomCells(
@@ -153,7 +151,7 @@ function countSolutions(board: Board, max = 2): number {
 
     if (board[row][col] !== 0) return solve(index + 1);
 
-    for (let num = 1; num <= 9; num++) {
+    for (const num of VALID_NUMBERS) {
       if (isValidPlacement(board, row, col, num)) {
         board[row][col] = num;
         if (solve(index + 1)) return true;

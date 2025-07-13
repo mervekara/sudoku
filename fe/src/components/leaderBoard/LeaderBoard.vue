@@ -45,14 +45,14 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
-import { Difficulty } from "../types/type";
-import { getLeaderboard } from "../services/leaderboard.service";
 
-import LeaderboardHeader from "./LeaderboardHeader.vue";
-import LeaderboardTable from "./LeaderboardTable.vue";
-import AppLoader from "./AppLoader.vue";
-import AppError from "./AppError.vue";
+import LeaderboardHeader from "@/src/components/leaderBoard/LeaderboardHeader.vue";
+import LeaderboardTable from "@/src/components/leaderBoard/LeaderboardTable.vue";
+import AppLoader from "@/src/components/app/AppLoader.vue";
+import AppError from "@/src/components/app/AppError.vue";
 import { useI18n } from "vue-i18n";
+import { getLeaderboard } from "@/src/services/leaderboard.service";
+import { Difficulty } from "@/src/types/type";
 
 const { t, tm } = useI18n();
 

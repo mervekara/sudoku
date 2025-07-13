@@ -1,9 +1,10 @@
 import { Difficulty, SudokuGrid } from "@/src/types/type";
-import { visibleMap } from "../utils";
-import { SudokuState } from "../types/shared";
-import { generateSudoku } from "../../../utils/sudokuGenerator";
+import { visibleMap } from "@/src/stores/sudoku/utils";
+import { SudokuState } from "@/src/stores/sudoku/types/shared";
+import { generateSudoku } from "@/src/utils/sudokuGenerator";
+import { GameActions } from "@/src/stores/sudoku/types/types";
 
-export const useGameActions = (state: SudokuState) => {
+export const useGameActions = (state: SudokuState): GameActions => {
   const resetGameState = (grid: SudokuGrid, solution: SudokuGrid): void => {
     state.grid.value = grid;
     state.solution.value = solution;
@@ -17,13 +18,18 @@ export const useGameActions = (state: SudokuState) => {
   };
 
   const initializeCellDrafts = (grid: SudokuGrid): void => {
-    grid.forEach((row) => row.forEach((cell) => (cell.drafts = [])));
+    grid.forEach((row) =>
+      row.forEach((cell) => {
+        cell.drafts = [];
+      })
+    );
   };
 
   const newGame = (difficulty: Difficulty): void => {
     state.difficulty.value = difficulty;
-    const visible = visibleMap[difficulty]();
-    const { grid, solution } = generateSudoku(visible);
+
+    const visibleCount: number = visibleMap[difficulty]();
+    const { grid, solution } = generateSudoku(visibleCount);
 
     initializeCellDrafts(grid);
     resetGameState(grid, solution);
@@ -41,5 +47,5 @@ export const useGameActions = (state: SudokuState) => {
     newGame,
     selectCell,
     toggleEditMode,
-  };
+  } as const;
 };

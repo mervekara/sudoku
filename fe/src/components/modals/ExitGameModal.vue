@@ -31,20 +31,17 @@
 </template>
 
 <script setup lang="ts">
-import AppModal from "./AppModal.vue";
+import AppModal from "@/src/components/modals/AppModal.vue";
 import { defineProps, defineEmits, toRefs } from "vue";
 import { useI18n } from "vue-i18n";
-const { t } = useI18n();
 
+const { t } = useI18n();
 const props = defineProps<{
   show: boolean;
   text: string;
 }>();
-
 const { show } = toRefs(props);
-
 const emit = defineEmits(["confirm", "cancel"]);
-
 const confirm = () => emit("confirm");
 const cancel = () => emit("cancel");
 </script>

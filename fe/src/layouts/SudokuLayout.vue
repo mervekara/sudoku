@@ -5,7 +5,7 @@
     </div>
 
     <div class="flex flex-col lg:flex-row w-full flex-1">
-      <div class="flex flex-col gap-6 p-6 pt-[5%] lg:p-8 lg:pt-[5%] lg:w-2/3">
+      <div class="flex flex-col gap-6 p-6 lg:p-8 w-full lg:w-2/3">
         <div
           class="flex flex-col lg:flex-row justify-center gap-4 lg:gap-8 !p-6 !pt-[5%]"
         >
@@ -27,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div class="right-side flex-1 p-4 border-l border-gray-200">
+      <div class="right-side w-full lg:flex-1 p-4 lg:border-l border-gray-200">
         <slot name="leader-board"></slot>
       </div>
     </div>
